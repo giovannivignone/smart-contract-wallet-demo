@@ -97,14 +97,14 @@ contract BaseShieldWallet is IWallet {
     // Fallback function in case no method matches the call we must delegate
     // to an attached service
     fallback() external payable {
-        address service = enabled(msg.sig);
+        address service = callEnabled(msg.sig);
         if (service != address(0)) {
             require(authorised[service], "Unauthorized service");
 
             // solhint-disable-next-line no-inline-assembly
             assembly {
                 calldatacopy(0, 0, calldatasize())
-                let result := staticcall(gas(), module, 0, calldatasize(), 0, 0)
+                let result := staticcall(gas(), service, 0, calldatasize(), 0, 0)
                 returndatacopy(0, 0, returndatasize())
                 switch result
                 case 0 {revert(0, returndatasize())}
