@@ -65,7 +65,7 @@ contract BaseShieldWallet is IWallet {
 
     function enableStaticCall(address _module, bytes4 /* _method */) external override onlyService {
         if (staticCallExecutor != _module) {
-            require(authorised[_module], "BW: unauthorized executor");
+            require(authorised[_module], "Unauthorized executor");
             staticCallExecutor = _module;
         }
         staticCallExecutor = _module;
@@ -88,5 +88,28 @@ contract BaseShieldWallet is IWallet {
             }
         }
         emit Invoked(msg.sender, _target, _value, _data);
+    }
+
+    // For receiving ETH
+    receive() external payable {
+    }
+
+    // Fallback function in case no method matches the call we must delegate
+    // to an attached service
+    fallback() external payable {
+        address service = enabled(msg.sig);
+        if (service != address(0)) {
+            require(authorised[service], "Unauthorized service");
+
+            // solhint-disable-next-line no-inline-assembly
+            assembly {
+                calldatacopy(0, 0, calldatasize())
+                let result := staticcall(gas(), module, 0, calldatasize(), 0, 0)
+                returndatacopy(0, 0, returndatasize())
+                switch result
+                case 0 {revert(0, returndatasize())}
+                default {return (0, returndatasize())}
+            }
+        }
     }
 }
