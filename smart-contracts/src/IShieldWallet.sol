@@ -2,9 +2,7 @@
 
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/utils/Ownable.sol";
-
-interface IWallet is Ownable {
+interface IWallet {
 
     function services() external view returns (uint);
 
