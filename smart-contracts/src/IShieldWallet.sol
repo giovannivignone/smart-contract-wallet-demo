@@ -2,9 +2,9 @@
 
 pragma solidity ^0.8.0;
 
-interface IWallet {
+import "@openzeppelin/contracts/utils/Ownable.sol";
 
-    function owner() external view returns (address);
+interface IWallet is Ownable {
 
     function services() external view returns (uint);
 
@@ -17,4 +17,5 @@ interface IWallet {
     function authorizeService(address _service, bool _value) external;
 
     function enableStaticCall(address _module, bytes4 _method) external;
+
 }
