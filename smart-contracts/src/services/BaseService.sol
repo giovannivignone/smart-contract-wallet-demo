@@ -9,14 +9,6 @@ abstract contract BaseService is IService {
 
     event ServiceCreated(bytes32 name);
 
-    enum OwnerSignature {
-        Anyone,             // Anyone
-        Required,           // Owner required
-        Optional,           // Owner and/or guardians
-        Disallowed,         // Guardians only
-        Session             // Session only
-    }
-
     modifier onlyWhenLocked(address _wallet) {
         require(_isLocked(_wallet), "BM: wallet must be locked");
         _;
