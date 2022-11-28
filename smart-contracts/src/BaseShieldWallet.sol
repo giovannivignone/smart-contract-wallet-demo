@@ -1,7 +1,7 @@
 pragma solidity ^0.8.0;
 
 import "./IWallet.sol";
-import "./services/IService.sol";
+import "./services/interfaces/IService.sol";
 
 contract BaseShieldWallet is IWallet {
 
@@ -65,12 +65,12 @@ contract BaseShieldWallet is IWallet {
         return address(0);
     }
 
-    function enableStaticCall(address _module, bytes4 /* _method */) external override onlyService {
-        if (staticCallExecutor != _module) {
-            require(authorised[_module], "Unauthorized executor");
-            staticCallExecutor = _module;
+    function enableStaticCall(address _service, bytes4 /* _method */) external override onlyService {
+        if (staticCallExecutor != _service) {
+            require(authorised[_service], "Unauthorized executor");
+            staticCallExecutor = _service;
         }
-        staticCallExecutor = _module;
+        staticCallExecutor = _service;
     }
 
     function transferOwner(address _newOwner) external override onlyService {

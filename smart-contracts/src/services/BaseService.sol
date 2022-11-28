@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.0;
 
-import "./IService.sol";
+import "./interfaces/IService.sol";
 import "../IWallet.sol";
 
 abstract contract BaseService is IService {
