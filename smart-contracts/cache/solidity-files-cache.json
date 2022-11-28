@@ -11,6 +11,131 @@
     ]
   },
   "files": {
+    "lib/openzeppelin-contracts/contracts/utils/Strings.sol": {
+      "lastModificationDate": 1669527860187,
+      "contentHash": "396031251978f8febfd90cb62cb240ec",
+      "sourceName": "lib/openzeppelin-contracts/contracts/utils/Strings.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/openzeppelin-contracts/contracts/utils/math/Math.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "Strings": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "Strings.sol/Strings.json"
+        }
+      }
+    },
+    "lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol": {
+      "lastModificationDate": 1669527860188,
+      "contentHash": "fe1190dbb6431c2464246925713f0f7f",
+      "sourceName": "lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/openzeppelin-contracts/contracts/utils/Strings.sol",
+        "lib/openzeppelin-contracts/contracts/utils/math/Math.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "ECDSA": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "ECDSA.sol/ECDSA.json"
+        }
+      }
+    },
+    "lib/openzeppelin-contracts/contracts/utils/math/Math.sol": {
+      "lastModificationDate": 1669527860190,
+      "contentHash": "55d629b490ef0159d02008fe603acd8b",
+      "sourceName": "lib/openzeppelin-contracts/contracts/utils/math/Math.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "Math": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "Math.sol/Math.json"
+        }
+      }
+    },
     "src/BaseShieldWallet.sol": {
       "lastModificationDate": 1669643929783,
       "contentHash": "de2ced61003ea9d7dda2b3570662ef5a",
@@ -95,8 +220,8 @@
       }
     },
     "src/services/BaseService.sol": {
-      "lastModificationDate": 1669643945362,
-      "contentHash": "26b74811c6375633d501c91950305c0c",
+      "lastModificationDate": 1669650697311,
+      "contentHash": "5e4e8361ae4ea5737dfcc5b5499c955c",
       "sourceName": "src/services/BaseService.sol",
       "solcConfig": {
         "settings": {
@@ -137,9 +262,53 @@
         }
       }
     },
+    "src/services/ShieldSafetyService.sol": {
+      "lastModificationDate": 1669666607171,
+      "contentHash": "90a96bf57d02f7fe9e048c5d3e5cf67b",
+      "sourceName": "src/services/ShieldSafetyService.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "src/IWallet.sol",
+        "src/services/BaseService.sol",
+        "src/services/interfaces/IService.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "ShieldSafetyService": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "ShieldSafetyService.sol/ShieldSafetyService.json"
+        }
+      }
+    },
     "src/services/TransactionControlService.sol": {
-      "lastModificationDate": 1669646412972,
-      "contentHash": "0b3e9afbf06b5a26cd0f77f5b9219821",
+      "lastModificationDate": 1669650577777,
+      "contentHash": "24b168c5e20e285c9b016496d19783db",
       "sourceName": "src/services/TransactionControlService.sol",
       "solcConfig": {
         "settings": {
@@ -259,6 +428,50 @@
       "artifacts": {
         "ITransferStorage": {
           "0.8.17+commit.8df45f5f.Darwin.appleclang": "ITransferStorage.sol/ITransferStorage.json"
+        }
+      }
+    },
+    "src/services/utils/SignatureDecoder.sol": {
+      "lastModificationDate": 1669675245794,
+      "contentHash": "7f4d19649f5664baf51b82b0a70975f1",
+      "sourceName": "src/services/utils/SignatureDecoder.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/openzeppelin-contracts/contracts/utils/Strings.sol",
+        "lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol",
+        "lib/openzeppelin-contracts/contracts/utils/math/Math.sol"
+      ],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "SignatureDecoder": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "SignatureDecoder.sol/SignatureDecoder.json"
         }
       }
     }

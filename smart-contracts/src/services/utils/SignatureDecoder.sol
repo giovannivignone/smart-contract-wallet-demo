@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: LGPL-3.0-only
 pragma solidity >=0.7.0 <0.9.0;
 
+import "openzeppelin-contracts/utils/cryptography/ECDSA.sol";
+
 /// @title SignatureDecoder - Decodes signatures that a encoded as bytes
 /// @author Richard Meissner - <richard@gnosis.pm>
 contract SignatureDecoder {
@@ -32,5 +34,28 @@ contract SignatureDecoder {
             // use the second best option, 'and'
             v := and(mload(add(signatures, add(signaturePos, 0x41))), 0xff)
         }
+    }
+
+    /**
+    * @dev Gets signers from the signature and the passed in datahash.
+    * @notice Make sure to check the datahash is correct, to avoid malleability attacks.
+    * @param dataHash bytes32 hash of the data.
+    * @param signatures concatenated rsv signatures.
+    * @param requiredSignatures number of required signatures.
+    * @return address[] memory of signers.
+    */
+    function getSigners(
+        bytes32 dataHash,
+        bytes memory signatures,
+        uint256 requiredSignatures
+    ) public pure returns (address[] memory) {
+        require(signatures.length / 65 == requiredSignatures, "Invalid signatures length");
+        require(requiredSignatures > 0, "There must be more than 0 signatures");
+        address[] memory signers;
+        for (uint256 i = 0; i < requiredSignatures; i++) {
+            (uint8 v, bytes32 r, bytes32 s) = signatureSplit(signatures, i);
+            signers[i] = (ECDSA.recover(dataHash, v, r, s));
+        }
+        return signers;
     }
 }
