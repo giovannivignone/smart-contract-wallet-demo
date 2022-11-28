@@ -14,4 +14,8 @@ abstract contract ShieldSafetyService is BaseService {
     function lockWallet(address _wallet) external onlyWalletOwnerOrSelf(_wallet) onlyWhenUnlocked(_wallet) {
         IWallet(_wallet).lock(true);
     }
+
+    function unlock(address _wallet) external onlyWalletOwnerOrSelf(_wallet) onlyWhenLocked(_wallet) {
+        IWallet(_wallet).lock(false);
+    }
 }

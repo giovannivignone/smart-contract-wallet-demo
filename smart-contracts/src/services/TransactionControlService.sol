@@ -48,7 +48,7 @@ abstract contract TransactionControlService is BaseService {
         Call[] calldata _transactions
     )
         external
-        onlySelf()
+        onlyWalletOwnerOrSelf(_wallet)
         onlyWhenUnlocked(_wallet)
         returns (bytes[] memory)
     {
