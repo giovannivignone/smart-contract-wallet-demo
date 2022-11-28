@@ -8,6 +8,8 @@ interface IWallet {
 
     function services() external view returns (uint);
 
+    function locked() external view returns (bool);
+
     function transferOwner(address _newOwner) external;
 
     function authorised(address _service) external view returns (bool);
@@ -21,4 +23,6 @@ interface IWallet {
     function enableStaticCall(address _module, bytes4 _method) external;
 
     function init(address _owner, address[] calldata _services) external;
+
+    function lock(bool _lock) external;
 }

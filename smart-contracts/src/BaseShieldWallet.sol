@@ -20,6 +20,8 @@ contract BaseShieldWallet is IWallet {
     // Service executing the next call
     address public staticCallExecutor;
 
+    bool public locked;
+
     event ServiceAuthorised(address indexed service);
     event ServiceRevoked(address indexed service);
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
@@ -75,6 +77,10 @@ contract BaseShieldWallet is IWallet {
         require(_newOwner != address(0), "Invalid address");
         owner = _newOwner;
         emit OwnershipTransferred(owner, _newOwner);
+    }
+
+    function lock(bool _lock) external onlyService {
+        locked = _lock;
     }
 
     function invoke(address _target, uint _value, bytes calldata _data) external onlyService returns (bytes memory _result) {
