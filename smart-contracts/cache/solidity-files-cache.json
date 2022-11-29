@@ -136,10 +136,10 @@
         }
       }
     },
-    "src/BaseShieldWallet.sol": {
-      "lastModificationDate": 1669643929783,
-      "contentHash": "de2ced61003ea9d7dda2b3570662ef5a",
-      "sourceName": "src/BaseShieldWallet.sol",
+    "src/BaseCoinMasterWallet.sol": {
+      "lastModificationDate": 1669705133241,
+      "contentHash": "b18e74da65820b061dbd6e0b4d33514e",
+      "sourceName": "src/BaseCoinMasterWallet.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
@@ -174,8 +174,8 @@
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
-        "BaseShieldWallet": {
-          "0.8.17+commit.8df45f5f.Darwin.appleclang": "BaseShieldWallet.sol/BaseShieldWallet.json"
+        "BaseCoinMasterWallet": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "BaseCoinMasterWallet.sol/BaseCoinMasterWallet.json"
         }
       }
     },
@@ -263,8 +263,8 @@
       }
     },
     "src/services/ShieldSafetyService.sol": {
-      "lastModificationDate": 1669666607171,
-      "contentHash": "90a96bf57d02f7fe9e048c5d3e5cf67b",
+      "lastModificationDate": 1669711693095,
+      "contentHash": "7ad51cf4dec05bc19e0c4613b25a01f5",
       "sourceName": "src/services/ShieldSafetyService.sol",
       "solcConfig": {
         "settings": {
@@ -295,9 +295,13 @@
         }
       },
       "imports": [
+        "lib/openzeppelin-contracts/contracts/utils/Strings.sol",
+        "lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol",
+        "lib/openzeppelin-contracts/contracts/utils/math/Math.sol",
         "src/IWallet.sol",
         "src/services/BaseService.sol",
-        "src/services/interfaces/IService.sol"
+        "src/services/interfaces/IService.sol",
+        "src/services/utils/SignatureDecoder.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {

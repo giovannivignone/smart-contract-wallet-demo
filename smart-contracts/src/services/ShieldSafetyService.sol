@@ -11,7 +11,7 @@ import "./utils/SignatureDecoder.sol";
  * @dev Service to manage the security aspects of a CoinMaster Wallet.
  * @notice This is a singleton contract to manage all CoinMaster Wallets based on storage data
 */
-abstract contract ShieldSafetyService is BaseService {
+abstract contract ShieldSafetyService is BaseService, SignatureDecoder {
 
     struct GuardianDetails {
         uint256 dateAdded;
@@ -94,11 +94,19 @@ abstract contract ShieldSafetyService is BaseService {
         ) external onlyGuardian(_wallet) {
         require(totalGuardians(_wallet) > 0, "No guardians");
         // ToDo: add check that dataHash is expected
-        address[] memory signers = SignatureDecoder.getSigners(_dataHash, _signatures);
+        uint256 requiredSignatures = _signatures.length / 65;
+        require(_signatures.length % 65 == 0, "Invalid signatures length");
+        address[] memory signers = SignatureDecoder.getSigners(_dataHash, _signatures,requiredSignatures);
+        uint256 voteCount = 0;
         for (uint256 i = 0; i < signers.length; i++) {
             require(isGuardian(_wallet, signers[i]), "Signatures were not from guardians or were formatted improperly");
-            GuardianDetails guardian = guardians[_wallet].guardian[signers[i]];
-
+            GuardianDetails memory guardian = guardians[_wallet].guardian[signers[i]];
+            voteCount += guardian.votingWeight;
+        }
+        if (voteCount >= getGuardianThreshold(_wallet)) {
+            IWallet(_wallet).transferOwner(_newOwner);
+        } else {
+            revert("Not enough votes");
         }
     }
 }

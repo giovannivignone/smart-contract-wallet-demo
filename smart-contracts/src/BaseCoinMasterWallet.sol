@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 import "./IWallet.sol";
 import "./services/interfaces/IService.sol";
 
-contract BaseShieldWallet is IWallet {
+contract BaseCoinMasterWallet is IWallet {
 
     // The authorised services of the Shield Wallet
     mapping(address => bool) public authorised;
@@ -26,6 +26,17 @@ contract BaseShieldWallet is IWallet {
     event ServiceRevoked(address indexed service);
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
     event Invoked(address indexed _service, address indexed target, uint indexed value, bytes data);
+
+    constructor(address[] memory _services) {
+        owner = msg.sender;
+        services = _services.length;
+        initialised = true;
+        for (uint256 i = 0; i < _services.length; i++) {
+            authorised[_services[i]] = true;
+            emit ServiceAuthorised(_services[i]);
+        }
+        emit OwnershipTransferred(address(0), owner);
+    }
 
     modifier onlyService{
         require(authorised[msg.sender], "Not an authorised service");
