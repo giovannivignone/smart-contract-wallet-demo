@@ -1,0 +1,9 @@
+:root {
+    --color-primary-blue: rgb(164, 201, 226);
+}
+*{
+    font: inter;
+}
+body {
+    background: black;
+}
