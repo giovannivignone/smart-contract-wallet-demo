@@ -10,12 +10,12 @@ legend {
     color: white;
 }
 
-#exampleDataList {
+.exampleDataList {
     width: 100%;
     border: none;
 }
 
-#exampleDataList:focus {
+.exampleDataList:focus {
     outline: none;
 }
 

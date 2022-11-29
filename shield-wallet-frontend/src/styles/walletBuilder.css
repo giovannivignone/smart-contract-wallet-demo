@@ -46,6 +46,16 @@
     font-size: 20px;
     font-weight: 500;
     border-radius: 10px;
-    box-shadow: 2px;
+    box-shadow: 0px;
+    border: solid 1px white;
+}
+
+.Deploy:hover {
     cursor: pointer;
+    background: #7488e3;
+}
+
+.Deploy:disabled {
+    background: #707070;
+    cursor: not-allowed;
 }
