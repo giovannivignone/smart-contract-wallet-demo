@@ -9,14 +9,17 @@ import {useState} from "react";
 export const WalletBuilderContent = () => {
     const [step, setStep] = useState(1);
     const [walletAddr, setWalletAddr] = useState("");
+    const navigateToWalletPage = () => {
+        window.location.href = "/wallets";
+    }
     const fetchWalletInputs = () => {
         const name = document.getElementById("walletName").value;
         return { name };
     }
     const fetchGuardianInputs = () => {
-        const guardians = document.getElementById("walletGuardians")?.value;
-        const threshold = document.getElementById("walletThreshold")?.value;
-        const weights = document.getElementById("walletGuardianWeights")?.value;
+        const guardians = document.getElementById("walletGuardians").value;
+        const threshold = document.getElementById("walletThreshold").value;
+        const weights = document.getElementById("walletGuardianWeights").value;
         return { guardians: guardians.split(","), threshold, weights: weights.split(",") };
     }
     const fetchWeb3 = async() => {
@@ -44,9 +47,7 @@ export const WalletBuilderContent = () => {
         const account = (await web3.eth.getAccounts())[0];
         const { guardians, threshold, weights } = fetchGuardianInputs();
         const securityService = new web3.eth.Contract(securityServiceCompiled.abi, process.env.REACT_APP_SINGLETON_SECURITY_SERVICE);
-        const tx = await securityService.methods.addGuardians(walletAddr, guardians, weights, threshold).send({ from: account });
-        console.log(tx);
-        return tx;
+        return await securityService.methods.addGuardians(walletAddr, guardians, weights, threshold).send({ from: account });
     }
 
     const handleCreateWallet = async() => {
@@ -59,7 +60,7 @@ export const WalletBuilderContent = () => {
     const handleAddGuardians = async () => {
         document.getElementById("addGuardiansButton").disabled = true;
         await addGuardians();
-        console.log("Routing to wallets...");
+        navigateToWalletPage();
     }
 
     const step1 =

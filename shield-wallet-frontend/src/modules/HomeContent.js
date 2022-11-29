@@ -1,7 +1,7 @@
 import "styles/homeContent.css";
 
 export const HomeContent = () => {
-    const navigateToWalletPage = () => {
+    const navigateToWalletBuilderPage = () => {
         window.location.href = "/create-wallet";
     }
     return (
@@ -15,7 +15,7 @@ export const HomeContent = () => {
                 <div className="innerText">
                     Enter our site below and build your new CoinMaster Wallet!
                 </div>
-                <button className="enter" to="create-wallet" onClick={navigateToWalletPage}>Enter</button>
+                <button className="enter" to="create-wallet" onClick={navigateToWalletBuilderPage}>Enter</button>
             </div>
             </div>
         </div>
