@@ -12,6 +12,7 @@ export const WalletBuilderContent = () => {
                 <InputBox inputTitle={"Guardians "} inputPlaceHolder="0xA87D...,0x90WGs..." />
                 <InputBox inputTitle={"Guardian Voting Weights"} inputPlaceHolder="1,2,..." />
                 <InputBox inputTitle={"Vote Threshold"} inputPlaceHolder="2" />
+                <button className="Deploy">Deploy Wallet</button>
             </div>
         </div>
     );

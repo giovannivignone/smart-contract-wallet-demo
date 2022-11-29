@@ -29,7 +29,7 @@ input {
     color: rgb(182, 181, 181);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 750px) {
     fieldset {
         width: calc(100% - 30px);
     }

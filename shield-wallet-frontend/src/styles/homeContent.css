@@ -26,7 +26,7 @@
 .enter {
     width: 290px;
     margin: 30px 30px 30px 30px;
-    background-color: #5C73DB;
+    background-color: var(--color-primary);
     color: white;
     padding: 0px 24px 0px 24px;
     gap: 8px;
@@ -43,7 +43,7 @@
     animation: 1s Subscribing;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 750px) {
     .wrapper {
         text-align: center;
     }
