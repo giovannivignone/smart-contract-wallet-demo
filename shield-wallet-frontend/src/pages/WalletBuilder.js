@@ -1,11 +1,12 @@
 import { Header } from "modules/Header";
-import { Outlet } from "react-router-dom";
+import { WalletBuilderContent } from "modules/WalletBuilderContent";
+import "styles/walletBuilder.css";
 
 const WalletBuilder = () => {
     return (
         <>
             <Header/>
-            <Outlet />
+            <WalletBuilderContent/>
         </>
   )
 };

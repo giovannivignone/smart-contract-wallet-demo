@@ -1,8 +1,8 @@
 fieldset {
     border-radius: 5px;
-    width: max-content;
+    width: 500px;
     border: 1px solid white;
-    margin: 30px 30px 0 0;
+    margin: 0;
 }
 
 legend {
@@ -23,6 +23,10 @@ input {
     background: transparent;
     font-size: 20px;
     color: white;
+}
+
+*::placeholder{
+    color: rgb(182, 181, 181);
 }
 
 @media screen and (max-width: 600px) {

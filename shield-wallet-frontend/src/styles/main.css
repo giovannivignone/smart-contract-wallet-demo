@@ -9,5 +9,5 @@
     font-family: "Inter";
 }
 body {
-    background: black;
+    background: var(--color-tertiary);
 }
