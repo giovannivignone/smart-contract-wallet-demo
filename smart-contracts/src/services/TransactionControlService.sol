@@ -10,7 +10,7 @@ import "./interfaces/ITransferStorage.sol";
 * @notice Default singleton service for issuing transactions through a MasterCoin Wallet.
 * @dev To be upgraded with EIP-4337 via a useroperation pool support and batched transactions
 */
-abstract contract TransactionControlService is BaseService {
+contract TransactionControlService is BaseService {
 
     bytes4 private constant ERC20_TRANSFER = bytes4(keccak256("transfer(address,uint256)"));
     bytes4 private constant ERC20_APPROVE = bytes4(keccak256("approve(address,uint256)"));

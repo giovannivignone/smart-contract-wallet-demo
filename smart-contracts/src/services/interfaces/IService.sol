@@ -3,7 +3,6 @@
 pragma solidity ^0.8.0;
 
 interface IService {
-    
     function addService(address _wallet, address _module) external;
 
     function init(address _wallet) external;

@@ -5,7 +5,7 @@ pragma solidity ^0.8.0;
 import "./interfaces/IService.sol";
 import "../IWallet.sol";
 
-abstract contract BaseService is IService {
+contract BaseService {
 
     event ServiceCreated(bytes32 name);
 

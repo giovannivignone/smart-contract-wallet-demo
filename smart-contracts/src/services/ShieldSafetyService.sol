@@ -11,7 +11,7 @@ import "./utils/SignatureDecoder.sol";
  * @dev Service to manage the security aspects of a CoinMaster Wallet.
  * @notice This is a singleton contract to manage all CoinMaster Wallets based on storage data
 */
-abstract contract ShieldSafetyService is BaseService, SignatureDecoder {
+contract ShieldSafetyService is BaseService, SignatureDecoder {
 
     struct GuardianDetails {
         uint256 dateAdded;
