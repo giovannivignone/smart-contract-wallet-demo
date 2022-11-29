@@ -72,6 +72,7 @@ contract ShieldSafetyService is BaseService, SignatureDecoder {
             guardians[_wallet].totalGuardians++;
         }
         guardians[_wallet].threshold = _threshold;
+        // Todo: emit event
     }
 
     function adjustGuardianWeight(address _wallet, address _guardian, uint256 _newWeight) external onlyWalletOwnerOrSelf(_wallet) {
@@ -84,6 +85,7 @@ contract ShieldSafetyService is BaseService, SignatureDecoder {
         require(isGuardian(_wallet, _guardian), "Guardian not added");
         delete guardians[_wallet].guardian[_guardian];
         guardians[_wallet].totalGuardians--;
+        // Todo: emit event
     }
 
     /**

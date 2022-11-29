@@ -1,6 +1,6 @@
 import "styles/inputBox.css";
 import { InputBox } from "modules/InputBox";
-import Web3 from "web3";
+import { fetchWeb3 } from "utils/fetchWeb3";
 import contractCompiled from "../constants/abis/BaseCoinMasterWallet.json";
 import securityServiceCompiled from "../constants/abis/ShieldSafetyService.json";
 import {useState} from "react";
@@ -8,12 +8,12 @@ import {useState} from "react";
 
 export const WalletBuilderContent = () => {
     const [step, setStep] = useState(1);
-    const [walletAddr, setWalletAddr] = useState("");
     const navigateToWalletPage = () => {
         window.location.href = "/wallets";
     }
     const fetchWalletInputs = () => {
         const name = document.getElementById("walletName").value;
+        document.getElementById("walletName").value = "";
         return { name };
     }
     const fetchGuardianInputs = () => {
@@ -21,15 +21,6 @@ export const WalletBuilderContent = () => {
         const threshold = document.getElementById("walletThreshold").value;
         const weights = document.getElementById("walletGuardianWeights").value;
         return { guardians: guardians.split(","), threshold, weights: weights.split(",") };
-    }
-    const fetchWeb3 = async() => {
-        if (!window.ethereum) {
-            alert("Please install MetaMask to use this dApp!");
-            throw Error("MetaMask not installed");
-        }
-        const web3 = new Web3(window.ethereum);
-        await window.ethereum.enable();
-        return web3;
     }
     const createWallet = async () => {
         const web3 = await fetchWeb3();
@@ -47,15 +38,14 @@ export const WalletBuilderContent = () => {
         const account = (await web3.eth.getAccounts())[0];
         const { guardians, threshold, weights } = fetchGuardianInputs();
         const securityService = new web3.eth.Contract(securityServiceCompiled.abi, process.env.REACT_APP_SINGLETON_SECURITY_SERVICE);
-        return await securityService.methods.addGuardians(walletAddr, guardians, weights, threshold).send({ from: account });
+        return await securityService.methods.addGuardians((await window.localStorage.getItem("walletAddress")), guardians, weights, threshold).send({ from: account });
     }
 
-    const handleCreateWallet = async() => {
+    const handleCreateWallet = async () => {
         document.getElementById("deployWalletButton").disabled = true;
         const walletAddress = await createWallet();
-        console.log(walletAddress);
+        await window.localStorage.setItem("walletAddress", walletAddress);
         setStep(2);
-        setWalletAddr(walletAddress);
     }
     const handleAddGuardians = async () => {
         document.getElementById("addGuardiansButton").disabled = true;
