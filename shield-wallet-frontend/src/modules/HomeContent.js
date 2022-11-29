@@ -1,14 +1,8 @@
-import { useState } from "react";
 import "styles/homeContent.css";
-import { InputBox } from "./InputBox";
 
 export const HomeContent = () => {
-    const [walletCreated, setWalletCreated] = useState(false);
-    const makeWallet = () => {
-        if (walletCreated) {
-            return;
-        }
-        setWalletCreated(true);
+    const navigateToWalletPage = () => {
+        window.location.href = "/create-wallet";
     }
     return (
         <div className="Backdrop">
@@ -21,7 +15,7 @@ export const HomeContent = () => {
                 <div className="innerText">
                     Enter our site below and build your new CoinMaster Wallet!
                 </div>
-                <button className="enter" onClick={makeWallet}>{walletCreated ? "Loading": "Enter"}</button>
+                <button className="enter" to="create-wallet" onClick={navigateToWalletPage}>Enter</button>
             </div>
             </div>
         </div>
