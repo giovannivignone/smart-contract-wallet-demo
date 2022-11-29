@@ -36,3 +36,28 @@
 .header-wrapper li:hover {
     background-color: rgb(260, 216, 55);
 }
+
+.Backdrop {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-tertiary);
+}
+
+@media screen and (max-width: 600px) {
+    .header-wrapper {
+        height: 80px;
+    }
+    .header-wrapper h1 {
+        margin-left: 0;
+        font-size: 1.5rem;
+    }
+    .header-wrapper ul {
+        display: none;
+    }
+    .Backdrop {
+        top: 80px;
+    }
+}

@@ -1,8 +1,12 @@
 :root {
-    --color-primary-blue: rgb(164, 201, 226);
+    --color-primary: #E8B566;
+    --color-secondary: black;
+    --color-tertiary: #8d8665;
+    --color-quaternary: #5C73DB;
 }
 *{
     font: inter;
+    font-family: "Inter";
 }
 body {
     background: black;
