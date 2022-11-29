@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/giovannivignone/smart-contract-wallet-demo/issues"
   },
-  "homepage": "https://github.com/giovannivignone/smart-contract-wallet-demo#readme"
+  "homepage": "https://github.com/giovannivignone/smart-contract-wallet-demo#readme",
+  "dependencies": {
+    "forge-std": "^1.1.2"
+  }
 }

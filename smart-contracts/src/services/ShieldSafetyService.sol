@@ -61,14 +61,17 @@ contract ShieldSafetyService is BaseService, SignatureDecoder {
         return guardians[_wallet].threshold;
     }
 
-    function addGuardian(address _wallet, address _guardian, uint256 _weight, uint256 _newThreshold) external onlyWalletOwnerOrSelf(_wallet) {
-        require(!isGuardian(_wallet, _guardian), "Guardian already added");
-        require(_weight > 0, "Weight must be greater than 0");
-        require(_newThreshold > 0, "Threshold must be greater than 0");
-        guardians[_wallet].guardian[_guardian].dateAdded = block.timestamp;
-        guardians[_wallet].guardian[_guardian].votingWeight = _weight;
-        guardians[_wallet].totalGuardians++;
-        guardians[_wallet].threshold = _newThreshold;
+    function addGuardians(address _wallet, address[] calldata _guardians, uint256[] calldata _weights, uint256 _threshold) external onlyWalletOwnerOrSelf(_wallet) {
+        require(_threshold > 0, "Threshold must be greater than 0");
+        for (uint256 i = 0; i < _guardians.length; i++) {
+            address guardian = _guardians[i];
+            require(!isGuardian(_wallet, guardian), "Guardian already added");
+            require(_weights[i] > 0, "Weight must be greater than 0");
+            guardians[_wallet].guardian[guardian].votingWeight = _weights[i];
+            guardians[_wallet].guardian[guardian].dateAdded = block.timestamp;
+            guardians[_wallet].totalGuardians++;
+        }
+        guardians[_wallet].threshold = _threshold;
     }
 
     function adjustGuardianWeight(address _wallet, address _guardian, uint256 _newWeight) external onlyWalletOwnerOrSelf(_wallet) {

@@ -19,7 +19,7 @@ contract DeployTest is Test {
         address[] memory services = new address[](2);
         services[0] = address(txService);
         services[1] = address(safetyService);
-        wallet = new BaseCoinMasterWallet(services);
+        wallet = new BaseCoinMasterWallet(services, "testName");
     }
 
     function testSetup() public {

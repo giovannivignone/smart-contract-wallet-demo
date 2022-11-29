@@ -20,6 +20,9 @@ contract BaseCoinMasterWallet is IWallet {
     // Service executing the next call
     address public staticCallExecutor;
 
+    // Name of your wallet
+    string public name;
+
     bool public locked;
 
     event ServiceAuthorised(address indexed service);
@@ -27,10 +30,12 @@ contract BaseCoinMasterWallet is IWallet {
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
     event Invoked(address indexed _service, address indexed target, uint indexed value, bytes data);
 
-    constructor(address[] memory _services) {
+    constructor(address[] memory _services, string memory _name) {
         owner = msg.sender;
         services = _services.length;
         initialised = true;
+        name = _name;
+
         for (uint256 i = 0; i < _services.length; i++) {
             authorised[_services[i]] = true;
             emit ServiceAuthorised(_services[i]);
